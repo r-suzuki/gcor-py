@@ -20,6 +20,7 @@ def gcor(
     x : 1d array-like or `pandas.DataFrame`
         Input data. If 1d array-like, treated as n observations of a random variable.
         If DataFrame, treated as n observations of p random variables (columns).
+        Must not be None.
     
     y : 1d array-like or None, default None
         Second input data. Required if `x` is 1d array-like.
@@ -81,17 +82,20 @@ def gcor(
             "drop_na must be one of {'none', 'pairwise', 'casewise'} "
             f"(got {drop_na!r})."
         )
+    
+    if x is None:
+        raise TypeError("x must not be None.")
 
     # --- Store inputs in a temporary DataFrame (df_tmp) ---
     return_matrix: bool = isinstance(x, pd.DataFrame)
 
     if return_matrix:
         if y is not None:
-            raise TypeError('When x is a pandas.DataFrame, y must be None.')
+            raise TypeError('y must be None when x is a pandas.DataFrame.')
         df_tmp = x.copy(deep=False)
     else:
         if y is None:
-            raise TypeError('When x is not a pandas.DataFrame, y must not be None.')
+            raise TypeError('y must not be None when x is not a pandas.DataFrame.')
 
         xs = None
         ys = None
@@ -128,6 +132,21 @@ def gcor(
 
     # --- Discretize each column ---
     df = df_tmp.apply(lambda s: discretize(s, k=k, max_levels=max_levels), axis=0)
+
+    if len(df) > 0:
+        non_categorical_cols = [
+            col for col in df.columns
+            if not isinstance(df[col].dtype, pd.CategoricalDtype)
+        ]
+        if non_categorical_cols:
+            warnings.warn(
+                "The following columns were not converted to categorical and may "
+                "result in NaN values: "
+                + ", ".join(map(str, non_categorical_cols))
+                + ". Try setting the 'max_levels' argument if they have too many levels.",
+                UserWarning,
+                stacklevel=2,
+            )
 
     # Precompute missing-value mask only when needed (pairwise).
     if drop_na == 'pairwise':

@@ -8,8 +8,8 @@ sync:
 test:
 	uv run pytest -q
 
-# Run tests with stdout/stderr (useful for debugging)
-debug:
+# Run tests with stdout/stderr
+testv:
 	uv run pytest -s
 
 # Build source distribution and wheel (equivalent to R CMD build)
