@@ -3,7 +3,7 @@
 
 # `gcor` package for Python
 
-A Python implementation of the generalized correlation measure. An R
+A Python implementation of generalized correlation measure. An R
 implementation is available at https://github.com/r-suzuki/gcor.
 
 **Note that this project is in an early stage of development, so changes
@@ -30,10 +30,11 @@ from gcor import gcor
 x = pd.Series([0, 0, 0, 0, 0, 1, 1, 1, 1, 1])
 y = pd.Series([1, 2, 3, 4, 5, 3, 4, 5, 6, 7])
 
-gcor(x, y)
+g = gcor(x, y)
+print(g)
 ```
 
-    np.float64(0.5345224838248488)
+    0.5345224838248488
 
 ### Matrix example (mixed numeric and categorical data)
 
@@ -44,26 +45,11 @@ df = pd.DataFrame({
     "z": ["a", "a", "b", "b", "c", "c", "d", "d", "e", "e"],
 })
 
-gcor(df)
+gmat = gcor(df)
+print(gmat)
 ```
 
-<div>
-<style scoped>
-    .dataframe tbody tr th:only-of-type {
-        vertical-align: middle;
-    }
-&#10;    .dataframe tbody tr th {
-        vertical-align: top;
-    }
-&#10;    .dataframe thead th {
-        text-align: right;
-    }
-</style>
-
-|     | x        | y        | z        |
-|-----|----------|----------|----------|
-| x   | 1.000000 | 0.534522 | 0.806219 |
-| y   | 0.534522 | 1.000000 | 0.734035 |
-| z   | 0.806219 | 0.734035 | 1.000000 |
-
-</div>
+              x         y         z
+    x  1.000000  0.534522  0.806219
+    y  0.534522  1.000000  0.734035
+    z  0.806219  0.734035  1.000000
