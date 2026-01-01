@@ -3,6 +3,7 @@ from pathlib import Path
 import numpy as np
 import pandas as pd
 import warnings
+import pytest
 
 from gcor import gcor
 from gcor._core import discretize
@@ -14,7 +15,7 @@ def load_iris() -> pd.DataFrame:
     return pd.read_csv(HERE / 'data' / 'iris.csv', comment='#')
 
 
-# 1. A pair expected to show positive association (Sepal.Length vs Petal.Width)
+# A pair expected to show positive association (Sepal.Length vs Petal.Width)
 def test_gcor_positive_pair_returns_finite_number():
     df = load_iris()
     x = df['Sepal.Length']
@@ -33,7 +34,7 @@ def test_gcor_positive_pair_returns_finite_number():
     assert float(val) >= 0.0
 
 
-# 2. A pair showing negative Pearson correlation (Petal.Length vs Sepal.Width)
+# A pair showing negative Pearson correlation (Petal.Length vs Sepal.Width)
 def test_gcor_negative_pair_returns_finite_number():
     df = load_iris()
     x = df['Petal.Length']
@@ -48,7 +49,7 @@ def test_gcor_negative_pair_returns_finite_number():
     assert float(val) >= 0.0
 
 
-# 3. Numeric vs categorical (Petal.Width vs Species)
+# Numeric vs categorical (Petal.Width vs Species)
 def test_gcor_numeric_and_categorical_returns_finite_number():
     df = load_iris()
     x = df['Petal.Width']
@@ -60,7 +61,7 @@ def test_gcor_numeric_and_categorical_returns_finite_number():
     assert np.isfinite(val)
 
 
-# 4. Empty Series inputs
+# Empty Series inputs
 def test_gcor_empty_series_returns_nan():
     x = pd.Series([], dtype=float)
     y = pd.Series([], dtype=float)
@@ -71,7 +72,7 @@ def test_gcor_empty_series_returns_nan():
     assert np.isnan(r)
 
 
-# 5. A small numeric matrix (Sepal.Length, Petal.Length, Petal.Width)
+# A small numeric matrix (Sepal.Length, Petal.Length, Petal.Width)
 def test_gcor_matrix_returns_square_dataframe():
     df = load_iris()
 
@@ -89,7 +90,7 @@ def test_gcor_matrix_returns_square_dataframe():
     assert np.allclose(np.diag(res.to_numpy()), 1.0)
 
 
-# 6. Numeric-only matrix (iris without Species)
+# Numeric-only matrix (iris without Species)
 def test_gcor_matrix_numeric_only_has_expected_shape_and_labels():
     df = load_iris()
 
@@ -109,7 +110,7 @@ def test_gcor_matrix_numeric_only_has_expected_shape_and_labels():
     assert np.allclose(arr, arr.T, equal_nan=True)
 
 
-# 7. Mixed-type matrix (full iris, including Species)
+# Mixed-type matrix (full iris, including Species)
 def test_gcor_matrix_with_categorical_column_has_expected_shape_and_labels():
     df = load_iris()
 
@@ -148,7 +149,7 @@ def test_gcor_matrix_with_categorical_column_has_expected_shape_and_labels():
         )
 
 
-# 8. Empty DataFrame input keeps labels; diagonal is 1.0 by definition.
+# Empty DataFrame input keeps labels; diagonal is 1.0 by definition.
 def test_gcor_matrix_empty_dataframe_keeps_columns():
     df = pd.DataFrame(
         {
@@ -174,7 +175,7 @@ def test_gcor_matrix_empty_dataframe_keeps_columns():
     assert np.isnan(off_diag).all()
 
 
-# 9. discretize(): numeric columns should be discretized, and low-cardinality
+# discretize(): numeric columns should be discretized, and low-cardinality
 # non-numeric columns should be converted to categorical when possible.
 def test_discretize_on_iris_numeric_and_species():
     df = load_iris()
@@ -193,3 +194,27 @@ def test_discretize_on_iris_numeric_and_species():
 
     # iris Species has 3 categories.
     assert y_cat.cat.categories.size == 3
+
+# Type errors
+def test_gcor_x_none_raises_typeerror():
+    with pytest.raises(TypeError):
+        gcor(None, None)
+
+def test_gcor_y_none_raises_typeerror_when_x_not_dataframe():
+    with pytest.raises(TypeError):
+        gcor([1, 2, 3], None)
+
+def test_gcor_dataframe_with_non_none_y_raises_typeerror():
+    df = pd.DataFrame({"a": [1, 2, 3]})
+    with pytest.raises(TypeError):
+        gcor(df, y=[1, 2, 3])
+
+# Value errors
+def test_gcor_invalid_drop_na_raises_valueerror():
+    with pytest.raises(ValueError):
+        gcor([1, 2, 3], [1, 2, 3], drop_na="INVALID")
+
+def test_gcor_length_mismatch_raises_valueerror():
+    with pytest.raises(ValueError):
+        gcor([1, 2, 3], [1, 2])
+
