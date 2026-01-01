@@ -18,7 +18,7 @@ build:
 
 # Render README.qmd to README.md using Quarto
 readme:
-	quarto render README.qmd
+	uv run quarto render README.qmd
 
 # Full check before release (rough equivalent of R CMD CHECK)
 check: sync test build readme
