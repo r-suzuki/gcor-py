@@ -218,3 +218,12 @@ def test_gcor_length_mismatch_raises_valueerror():
     with pytest.raises(ValueError):
         gcor([1, 2, 3], [1, 2])
 
+# Too many levels
+def test_gcor_warns_when_non_categorical_columns_remain():
+    # Simple non-numeric data with multiple levels (R: letters[1:5])
+    x = pd.Series(list("abcde"))
+    y = pd.Series(list("vwxyz"))
+
+    # Small max_levels forces non-conversion to categorical
+    with pytest.warns(UserWarning):
+        gcor(x, y, max_levels=3)

@@ -133,6 +133,21 @@ def gcor(
     # --- Discretize each column ---
     df = df_tmp.apply(lambda s: discretize(s, k=k, max_levels=max_levels), axis=0)
 
+    if len(df) > 0:
+        non_categorical_cols = [
+            col for col in df.columns
+            if not isinstance(df[col].dtype, pd.CategoricalDtype)
+        ]
+        if non_categorical_cols:
+            warnings.warn(
+                "The following columns were not converted to categorical and may "
+                "result in NaN values: "
+                + ", ".join(map(str, non_categorical_cols))
+                + ". Try setting the 'max_levels' argument if they have too many levels.",
+                UserWarning,
+                stacklevel=2,
+            )
+
     # Precompute missing-value mask only when needed (pairwise).
     if drop_na == 'pairwise':
         na = df.isna()
