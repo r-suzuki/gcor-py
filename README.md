@@ -1,7 +1,7 @@
 # gcor-py
 
 
-# `gcor` package for Python
+# A Python library for generalized correlation
 
 A Python implementation of generalized correlation measure. An R
 implementation is available at https://github.com/r-suzuki/gcor.

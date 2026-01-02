@@ -8,7 +8,7 @@ execute:
   error: false
 ---
 
-# `gcor` package for Python
+# A Python library for generalized correlation
 A Python implementation of generalized correlation measure. An R implementation is available at https://github.com/r-suzuki/gcor.
 
 **Note that this project is in an early stage of development, so changes

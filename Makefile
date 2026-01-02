@@ -23,7 +23,7 @@ readme:
 # Build HTML docs with pdoc
 # - Adjust "gcor" to your top-level package/module name.
 # - "docs" is a convenient output dir for GitHub Pages.
-docs:
+docs: readme
 	rm -rf docs
 	uv run pdoc --docformat numpy -o docs gcor
 

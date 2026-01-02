@@ -19,6 +19,16 @@
         <div>
 
 
+            <h2>Contents</h2>
+            <ul>
+  <li><a href="#a-python-library-for-generalized-correlation">A Python library for generalized correlation</a>
+  <ul>
+    <li><a href="#installation">Installation</a></li>
+    <li><a href="#examples">Examples</a></li>
+  </ul></li>
+  <li><a href="#api-documentation">API Documentation</a></li>
+</ul>
+
 
 
             <h2>API Documentation</h2>
@@ -42,14 +52,89 @@
                     <h1 class="modulename">
 gcor    </h1>
 
-                
+                        <div class="docstring"><h1 id="a-python-library-for-generalized-correlation">A Python library for generalized correlation</h1>
+
+<p>A Python implementation of generalized correlation measure. An R
+implementation is available at <a href="https://github.com/r-suzuki/gcor">https://github.com/r-suzuki/gcor</a>.</p>
+
+<p><strong>Note that this project is in an early stage of development, so changes
+may occur frequently.</strong></p>
+
+<h2 id="installation">Installation</h2>
+
+<div class="pdoc-code codehilite">
+<pre><span></span><code>pip<span class="w"> </span>install<span class="w"> </span>git+https://github.com/r-suzuki/gcor-py.git
+</code></pre>
+</div>
+
+<h2 id="examples">Examples</h2>
+
+<p><strong>Generalized correlation measure</strong> takes values in $[0, 1]$ and can
+capture both linear and nonlinear associations. It naturally handles
+mixed data types, including numerical and categorical variables.</p>
+
+<h3 id="scalar-example">Scalar example</h3>
+
+<div class="pdoc-code codehilite">
+<pre><span></span><code><span class="kn">import</span><span class="w"> </span><span class="nn">pandas</span><span class="w"> </span><span class="k">as</span><span class="w"> </span><span class="nn">pd</span>
+<span class="kn">from</span><span class="w"> </span><span class="nn">gcor</span><span class="w"> </span><span class="kn">import</span> <span class="n">gcor</span>
+
+<span class="n">x</span> <span class="o">=</span> <span class="n">pd</span><span class="o">.</span><span class="n">Series</span><span class="p">([</span><span class="mi">0</span><span class="p">,</span> <span class="mi">0</span><span class="p">,</span> <span class="mi">0</span><span class="p">,</span> <span class="mi">0</span><span class="p">,</span> <span class="mi">0</span><span class="p">,</span> <span class="mi">1</span><span class="p">,</span> <span class="mi">1</span><span class="p">,</span> <span class="mi">1</span><span class="p">,</span> <span class="mi">1</span><span class="p">,</span> <span class="mi">1</span><span class="p">])</span>
+<span class="n">y</span> <span class="o">=</span> <span class="n">pd</span><span class="o">.</span><span class="n">Series</span><span class="p">([</span><span class="mi">1</span><span class="p">,</span> <span class="mi">2</span><span class="p">,</span> <span class="mi">3</span><span class="p">,</span> <span class="mi">4</span><span class="p">,</span> <span class="mi">5</span><span class="p">,</span> <span class="mi">3</span><span class="p">,</span> <span class="mi">4</span><span class="p">,</span> <span class="mi">5</span><span class="p">,</span> <span class="mi">6</span><span class="p">,</span> <span class="mi">7</span><span class="p">])</span>
+
+<span class="n">g</span> <span class="o">=</span> <span class="n">gcor</span><span class="p">(</span><span class="n">x</span><span class="p">,</span> <span class="n">y</span><span class="p">)</span>
+<span class="nb">print</span><span class="p">(</span><span class="n">g</span><span class="p">)</span>
+</code></pre>
+</div>
+
+<pre><code>0.5345224838248488
+</code></pre>
+
+<h3 id="matrix-example-mixed-numeric-and-categorical-data">Matrix example (mixed numeric and categorical data)</h3>
+
+<div class="pdoc-code codehilite">
+<pre><span></span><code><span class="n">df</span> <span class="o">=</span> <span class="n">pd</span><span class="o">.</span><span class="n">DataFrame</span><span class="p">({</span>
+    <span class="s2">&quot;x&quot;</span><span class="p">:</span> <span class="n">x</span><span class="p">,</span>
+    <span class="s2">&quot;y&quot;</span><span class="p">:</span> <span class="n">y</span><span class="p">,</span>
+    <span class="s2">&quot;z&quot;</span><span class="p">:</span> <span class="p">[</span><span class="s2">&quot;a&quot;</span><span class="p">,</span> <span class="s2">&quot;a&quot;</span><span class="p">,</span> <span class="s2">&quot;b&quot;</span><span class="p">,</span> <span class="s2">&quot;b&quot;</span><span class="p">,</span> <span class="s2">&quot;c&quot;</span><span class="p">,</span> <span class="s2">&quot;c&quot;</span><span class="p">,</span> <span class="s2">&quot;d&quot;</span><span class="p">,</span> <span class="s2">&quot;d&quot;</span><span class="p">,</span> <span class="s2">&quot;e&quot;</span><span class="p">,</span> <span class="s2">&quot;e&quot;</span><span class="p">],</span>
+<span class="p">})</span>
+
+<span class="n">gmat</span> <span class="o">=</span> <span class="n">gcor</span><span class="p">(</span><span class="n">df</span><span class="p">)</span>
+<span class="nb">print</span><span class="p">(</span><span class="n">gmat</span><span class="p">)</span>
+</code></pre>
+</div>
+
+<pre><code>          x         y         z
+x  1.000000  0.534522  0.806219
+y  0.534522  1.000000  0.734035
+z  0.806219  0.734035  1.000000
+</code></pre>
+
+<p><br></p>
+
+<hr />
+
+<h1 id="api-documentation">API Documentation</h1>
+</div>
+
                         <input id="mod-gcor-view-source" class="view-source-toggle-state" type="checkbox" aria-hidden="true" tabindex="-1">
 
                         <label class="view-source-button" for="mod-gcor-view-source"><span>View Source</span></label>
 
-                        <div class="pdoc-code codehilite"><pre><span></span><span id="L-1"><a href="#L-1"><span class="linenos">1</span></a><span class="kn">from</span><span class="w"> </span><span class="nn">.api</span><span class="w"> </span><span class="kn">import</span> <span class="n">gcor</span>
-</span><span id="L-2"><a href="#L-2"><span class="linenos">2</span></a>
-</span><span id="L-3"><a href="#L-3"><span class="linenos">3</span></a><span class="n">__all__</span> <span class="o">=</span> <span class="p">[</span><span class="s1">&#39;gcor&#39;</span><span class="p">]</span>
+                        <div class="pdoc-code codehilite"><pre><span></span><span id="L-1"><a href="#L-1"><span class="linenos"> 1</span></a><span class="sd">&quot;&quot;&quot;</span>
+</span><span id="L-2"><a href="#L-2"><span class="linenos"> 2</span></a><span class="sd">.. include:: ../../README.md</span>
+</span><span id="L-3"><a href="#L-3"><span class="linenos"> 3</span></a><span class="sd">   :start-line: 2</span>
+</span><span id="L-4"><a href="#L-4"><span class="linenos"> 4</span></a>
+</span><span id="L-5"><a href="#L-5"><span class="linenos"> 5</span></a><span class="sd">&lt;br&gt;</span>
+</span><span id="L-6"><a href="#L-6"><span class="linenos"> 6</span></a>
+</span><span id="L-7"><a href="#L-7"><span class="linenos"> 7</span></a><span class="sd">---</span>
+</span><span id="L-8"><a href="#L-8"><span class="linenos"> 8</span></a>
+</span><span id="L-9"><a href="#L-9"><span class="linenos"> 9</span></a><span class="sd"># API Documentation</span>
+</span><span id="L-10"><a href="#L-10"><span class="linenos">10</span></a><span class="sd">&quot;&quot;&quot;</span>
+</span><span id="L-11"><a href="#L-11"><span class="linenos">11</span></a>
+</span><span id="L-12"><a href="#L-12"><span class="linenos">12</span></a><span class="kn">from</span><span class="w"> </span><span class="nn">.api</span><span class="w"> </span><span class="kn">import</span> <span class="n">gcor</span>
+</span><span id="L-13"><a href="#L-13"><span class="linenos">13</span></a>
+</span><span id="L-14"><a href="#L-14"><span class="linenos">14</span></a><span class="n">__all__</span> <span class="o">=</span> <span class="p">[</span><span class="s1">&#39;gcor&#39;</span><span class="p">]</span>
 </span></pre></div>
 
 
