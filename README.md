@@ -7,7 +7,7 @@ may occur frequently.**
 ## Documentation
 
 Documentation site (user guide and API reference)
-: <https://r-suzuki.github.io/gcor-py>
+: <https://r-suzuki.github.io/gcor-py/>
 
 User guide
 : `README_USER.md`
