@@ -1,8 +1,9 @@
 # A Python library for generalized correlation
 
 
-A Python implementation of generalized correlation measure. An R
-implementation is available at https://github.com/r-suzuki/gcor.
+A Python implementation of generalized correlation measure. For
+development status and source code, see
+<https://github.com/r-suzuki/gcor-py>.
 
 **Note that this project is in an early stage of development, so changes
 may occur frequently.**
