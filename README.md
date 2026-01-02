@@ -1,55 +1,30 @@
-# gcor-py
-
-
-# A Python library for generalized correlation
-
-A Python implementation of generalized correlation measure. An R
-implementation is available at https://github.com/r-suzuki/gcor.
+# `gcor` library for Python
+A Python implementation of generalized correlation measure.
 
 **Note that this project is in an early stage of development, so changes
 may occur frequently.**
 
-## Installation
+## Documentation
 
-``` bash
-pip install git+https://github.com/r-suzuki/gcor-py.git
+Documentation site (user guide and API reference)
+: <https://r-suzuki.github.io/gcor-py>
+
+User guide
+: `README_USER.md`
+
+## Development
+
+This project uses `uv` and `Makefile` targets.
+
+```bash
+make sync     # install dependencies (incl. dev)
+make test     # run tests
+make docs     # build docs (pdoc + README_USER)
+make build    # build sdist/wheel
+make check    # full check before release
 ```
 
-## Examples
+## References
 
-**Generalized correlation measure** takes values in $[0, 1]$ and can
-capture both linear and nonlinear associations. It naturally handles
-mixed data types, including numerical and categorical variables.
-
-### Scalar example
-
-``` python
-import pandas as pd
-from gcor import gcor
-
-x = pd.Series([0, 0, 0, 0, 0, 1, 1, 1, 1, 1])
-y = pd.Series([1, 2, 3, 4, 5, 3, 4, 5, 6, 7])
-
-g = gcor(x, y)
-print(g)
-```
-
-    0.5345224838248488
-
-### Matrix example (mixed numeric and categorical data)
-
-``` python
-df = pd.DataFrame({
-    "x": x,
-    "y": y,
-    "z": ["a", "a", "b", "b", "c", "c", "d", "d", "e", "e"],
-})
-
-gmat = gcor(df)
-print(gmat)
-```
-
-              x         y         z
-    x  1.000000  0.534522  0.806219
-    y  0.534522  1.000000  0.734035
-    z  0.806219  0.734035  1.000000
+`gcor` package for R
+: <https://github.com/r-suzuki/gcor>
