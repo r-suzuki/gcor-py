@@ -1,4 +1,4 @@
-.PHONY: sync test debug build install-check readme check clean
+.PHONY: sync test testv build install-check readme check clean
 
 # Install dependencies (including development extras)
 sync:
