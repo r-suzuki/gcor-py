@@ -21,8 +21,9 @@ build:
 # - "docs" is a convenient output dir for GitHub Pages.
 docs:
 	uv run quarto render README_USER.qmd
-	rm -rf docs
-	uv run pdoc --docformat numpy -o docs/gcor-py gcor
+	@VERSION=$$(uv run python -c "import tomllib; from pathlib import Path; d=tomllib.loads(Path('pyproject.toml').read_text(encoding='utf-8')); print(d['project']['version'])"); \
+	rm -rf docs; \
+	uv run pdoc --docformat numpy --footer-text "gcor v$${VERSION}" -o docs/gcor-py gcor
 
 # Full check before release (rough equivalent of R CMD CHECK)
 check: sync test build docs
