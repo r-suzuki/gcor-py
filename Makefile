@@ -22,7 +22,7 @@ build:
 docs:
 	uv run quarto render README_USER.qmd
 	rm -rf docs
-	uv run pdoc --docformat numpy -o docs gcor
+	uv run pdoc --docformat numpy -o docs/gcor-py gcor
 
 # Full check before release (rough equivalent of R CMD CHECK)
 check: sync test build docs
