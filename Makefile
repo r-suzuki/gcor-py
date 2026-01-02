@@ -1,4 +1,4 @@
-.PHONY: sync test testv build install-check readme docs check clean
+.PHONY: sync test testv build install-check readme-user docs check clean
 
 # Install dependencies (including development extras)
 sync:
@@ -16,19 +16,19 @@ testv:
 build:
 	uv run python -m build
 
-# Render README.qmd to README.md using Quarto
-readme:
-	uv run quarto render README.qmd
+# Render README_USER.qmd to README_USER.md using Quarto
+readme-user:
+	uv run quarto render README_USER.qmd
 
 # Build HTML docs with pdoc
 # - Adjust "gcor" to your top-level package/module name.
 # - "docs" is a convenient output dir for GitHub Pages.
-docs: readme
+docs: readme-user
 	rm -rf docs
 	uv run pdoc --docformat numpy -o docs gcor
 
 # Full check before release (rough equivalent of R CMD CHECK)
-check: sync test build readme docs
+check: sync test build readme-user docs
 	@echo "✔ All checks completed successfully."
 
 # Remove build artifacts and temporary environments
