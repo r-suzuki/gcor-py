@@ -6,8 +6,8 @@ from gcor import gcor
 
 
 def _example_data():
-    x = pd.Series([0, 0, 0, 0, 0, 1, 1, 1, 1, 1])
-    y = pd.Series([1, 2, 3, 4, 5, 3, 4, 5, 6, 7])
+    x = [0, 0, 0, 0, 0, 1, 1, 1, 1, 1]
+    y = [1, 2, 3, 4, 5, 3, 4, 5, 6, 7]
     df = pd.DataFrame({
         'x': x,
         'y': y,
@@ -20,6 +20,8 @@ def test_gcor_example_scalar_regression():
     x, y, _ = _example_data()
 
     got = gcor(x, y)
+    print(got)
+
     expected = 0.5345224838248488
 
     # Regression test for the default behavior (k=None).
@@ -31,6 +33,7 @@ def test_gcor_example_matrix_regression():
     _, _, df = _example_data()
 
     got = gcor(df)
+    print(got)
 
     # Basic shape/labels (regression for API behavior)
     assert isinstance(got, pd.DataFrame)

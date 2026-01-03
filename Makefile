@@ -23,7 +23,7 @@ docs:
 	uv run quarto render README_USER.qmd
 	@VERSION=$$(uv run python -c "import tomllib; from pathlib import Path; d=tomllib.loads(Path('pyproject.toml').read_text(encoding='utf-8')); print(d['project']['version'])"); \
 	rm -rf docs; \
-	uv run pdoc --docformat numpy --footer-text "gcor v$${VERSION}" -o docs gcor
+	uv run pdoc --docformat numpy --math --footer-text "gcor v$${VERSION}" -o docs gcor
 
 # Full check before release (rough equivalent of R CMD CHECK)
 check: sync test build docs

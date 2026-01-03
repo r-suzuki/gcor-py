@@ -57,13 +57,13 @@ def gcor(
     
     Examples
     --------
-    >>> import pandas as pd
     >>> from gcor import gcor
-    >>> x = pd.Series([0, 0, 0, 0, 0, 1, 1, 1, 1, 1])
-    >>> y = pd.Series([1, 2, 3, 4, 5, 3, 4, 5, 6, 7])
+    >>> x = [0, 0, 0, 0, 0, 1, 1, 1, 1, 1]
+    >>> y = [1, 2, 3, 4, 5, 3, 4, 5, 6, 7]
     >>> gcor(x, y)
-    0.534522
+    0.5345224838248488
 
+    >>> import pandas as pd
     >>> df = pd.DataFrame({
     ...     'x': x,
     ...     'y': y,
