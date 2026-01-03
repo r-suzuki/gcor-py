@@ -44,7 +44,7 @@ def gcor(
     Returns
     -------
     float or pandas.DataFrame
-        If `x` is 1d array-like, returns a float (or `numpy.nan`).
+        If `x` is 1d array-like, returns a float (or NaN).
         If `x` is DataFrame, returns a generalized correlation matrix as a DataFrame.
         The diagonal elements are always set to 1.0.
     
@@ -175,4 +175,5 @@ def gcor(
     if return_matrix:
         return pd.DataFrame(mat, index=df.columns, columns=df.columns)
     else:
-        return mat[0, 1]
+        # Return as Python float (cast from NumPy scalar)
+        return float(mat[0, 1])

@@ -240,7 +240,7 @@ z  0.806219  0.734035  1.000000
 </span><span id="gcor-45"><a href="#gcor-45"><span class="linenos"> 45</span></a><span class="sd">    Returns</span>
 </span><span id="gcor-46"><a href="#gcor-46"><span class="linenos"> 46</span></a><span class="sd">    -------</span>
 </span><span id="gcor-47"><a href="#gcor-47"><span class="linenos"> 47</span></a><span class="sd">    float or pandas.DataFrame</span>
-</span><span id="gcor-48"><a href="#gcor-48"><span class="linenos"> 48</span></a><span class="sd">        If `x` is 1d array-like, returns a float (or `numpy.nan`).</span>
+</span><span id="gcor-48"><a href="#gcor-48"><span class="linenos"> 48</span></a><span class="sd">        If `x` is 1d array-like, returns a float (or NaN).</span>
 </span><span id="gcor-49"><a href="#gcor-49"><span class="linenos"> 49</span></a><span class="sd">        If `x` is DataFrame, returns a generalized correlation matrix as a DataFrame.</span>
 </span><span id="gcor-50"><a href="#gcor-50"><span class="linenos"> 50</span></a><span class="sd">        The diagonal elements are always set to 1.0.</span>
 </span><span id="gcor-51"><a href="#gcor-51"><span class="linenos"> 51</span></a><span class="sd">    </span>
@@ -371,7 +371,8 @@ z  0.806219  0.734035  1.000000
 </span><span id="gcor-176"><a href="#gcor-176"><span class="linenos">176</span></a>    <span class="k">if</span> <span class="n">return_matrix</span><span class="p">:</span>
 </span><span id="gcor-177"><a href="#gcor-177"><span class="linenos">177</span></a>        <span class="k">return</span> <span class="n">pd</span><span class="o">.</span><span class="n">DataFrame</span><span class="p">(</span><span class="n">mat</span><span class="p">,</span> <span class="n">index</span><span class="o">=</span><span class="n">df</span><span class="o">.</span><span class="n">columns</span><span class="p">,</span> <span class="n">columns</span><span class="o">=</span><span class="n">df</span><span class="o">.</span><span class="n">columns</span><span class="p">)</span>
 </span><span id="gcor-178"><a href="#gcor-178"><span class="linenos">178</span></a>    <span class="k">else</span><span class="p">:</span>
-</span><span id="gcor-179"><a href="#gcor-179"><span class="linenos">179</span></a>        <span class="k">return</span> <span class="n">mat</span><span class="p">[</span><span class="mi">0</span><span class="p">,</span> <span class="mi">1</span><span class="p">]</span>
+</span><span id="gcor-179"><a href="#gcor-179"><span class="linenos">179</span></a>        <span class="c1"># Return as Python float (cast from NumPy scalar)</span>
+</span><span id="gcor-180"><a href="#gcor-180"><span class="linenos">180</span></a>        <span class="k">return</span> <span class="nb">float</span><span class="p">(</span><span class="n">mat</span><span class="p">[</span><span class="mi">0</span><span class="p">,</span> <span class="mi">1</span><span class="p">])</span>
 </span></pre></div>
 
 
@@ -406,7 +407,7 @@ The maximum number of levels allowed when converting non-numeric variables to ca
 <h6 id="returns">Returns</h6>
 
 <ul>
-<li><strong>float or pandas.DataFrame</strong>: If <code>x</code> is 1d array-like, returns a float (or <code>numpy.nan</code>).
+<li><strong>float or pandas.DataFrame</strong>: If <code>x</code> is 1d array-like, returns a float (or NaN).
 If <code>x</code> is DataFrame, returns a generalized correlation matrix as a DataFrame.
 The diagonal elements are always set to 1.0.</li>
 </ul>
