@@ -99,11 +99,10 @@ mixed data types, including numerical and categorical variables.</p>
 <h3 id="scalar-example">Scalar example</h3>
 
 <div class="pdoc-code codehilite">
-<pre><span></span><code><span class="kn">import</span><span class="w"> </span><span class="nn">pandas</span><span class="w"> </span><span class="k">as</span><span class="w"> </span><span class="nn">pd</span>
-<span class="kn">from</span><span class="w"> </span><span class="nn">gcor</span><span class="w"> </span><span class="kn">import</span> <span class="n">gcor</span>
+<pre><span></span><code><span class="kn">from</span><span class="w"> </span><span class="nn">gcor</span><span class="w"> </span><span class="kn">import</span> <span class="n">gcor</span>
 
-<span class="n">x</span> <span class="o">=</span> <span class="n">pd</span><span class="o">.</span><span class="n">Series</span><span class="p">([</span><span class="mi">0</span><span class="p">,</span> <span class="mi">0</span><span class="p">,</span> <span class="mi">0</span><span class="p">,</span> <span class="mi">0</span><span class="p">,</span> <span class="mi">0</span><span class="p">,</span> <span class="mi">1</span><span class="p">,</span> <span class="mi">1</span><span class="p">,</span> <span class="mi">1</span><span class="p">,</span> <span class="mi">1</span><span class="p">,</span> <span class="mi">1</span><span class="p">])</span>
-<span class="n">y</span> <span class="o">=</span> <span class="n">pd</span><span class="o">.</span><span class="n">Series</span><span class="p">([</span><span class="mi">1</span><span class="p">,</span> <span class="mi">2</span><span class="p">,</span> <span class="mi">3</span><span class="p">,</span> <span class="mi">4</span><span class="p">,</span> <span class="mi">5</span><span class="p">,</span> <span class="mi">3</span><span class="p">,</span> <span class="mi">4</span><span class="p">,</span> <span class="mi">5</span><span class="p">,</span> <span class="mi">6</span><span class="p">,</span> <span class="mi">7</span><span class="p">])</span>
+<span class="n">x</span> <span class="o">=</span> <span class="p">[</span><span class="mi">0</span><span class="p">,</span> <span class="mi">0</span><span class="p">,</span> <span class="mi">0</span><span class="p">,</span> <span class="mi">0</span><span class="p">,</span> <span class="mi">0</span><span class="p">,</span> <span class="mi">1</span><span class="p">,</span> <span class="mi">1</span><span class="p">,</span> <span class="mi">1</span><span class="p">,</span> <span class="mi">1</span><span class="p">,</span> <span class="mi">1</span><span class="p">]</span>
+<span class="n">y</span> <span class="o">=</span> <span class="p">[</span><span class="mi">1</span><span class="p">,</span> <span class="mi">2</span><span class="p">,</span> <span class="mi">3</span><span class="p">,</span> <span class="mi">4</span><span class="p">,</span> <span class="mi">5</span><span class="p">,</span> <span class="mi">3</span><span class="p">,</span> <span class="mi">4</span><span class="p">,</span> <span class="mi">5</span><span class="p">,</span> <span class="mi">6</span><span class="p">,</span> <span class="mi">7</span><span class="p">]</span>
 
 <span class="n">g</span> <span class="o">=</span> <span class="n">gcor</span><span class="p">(</span><span class="n">x</span><span class="p">,</span> <span class="n">y</span><span class="p">)</span>
 <span class="nb">print</span><span class="p">(</span><span class="n">g</span><span class="p">)</span>
@@ -116,7 +115,9 @@ mixed data types, including numerical and categorical variables.</p>
 <h3 id="matrix-example-mixed-numeric-and-categorical-data">Matrix example (mixed numeric and categorical data)</h3>
 
 <div class="pdoc-code codehilite">
-<pre><span></span><code><span class="n">df</span> <span class="o">=</span> <span class="n">pd</span><span class="o">.</span><span class="n">DataFrame</span><span class="p">({</span>
+<pre><span></span><code><span class="kn">import</span><span class="w"> </span><span class="nn">pandas</span><span class="w"> </span><span class="k">as</span><span class="w"> </span><span class="nn">pd</span>
+
+<span class="n">df</span> <span class="o">=</span> <span class="n">pd</span><span class="o">.</span><span class="n">DataFrame</span><span class="p">({</span>
     <span class="s2">&quot;x&quot;</span><span class="p">:</span> <span class="n">x</span><span class="p">,</span>
     <span class="s2">&quot;y&quot;</span><span class="p">:</span> <span class="n">y</span><span class="p">,</span>
     <span class="s2">&quot;z&quot;</span><span class="p">:</span> <span class="p">[</span><span class="s2">&quot;a&quot;</span><span class="p">,</span> <span class="s2">&quot;a&quot;</span><span class="p">,</span> <span class="s2">&quot;b&quot;</span><span class="p">,</span> <span class="s2">&quot;b&quot;</span><span class="p">,</span> <span class="s2">&quot;c&quot;</span><span class="p">,</span> <span class="s2">&quot;c&quot;</span><span class="p">,</span> <span class="s2">&quot;d&quot;</span><span class="p">,</span> <span class="s2">&quot;d&quot;</span><span class="p">,</span> <span class="s2">&quot;e&quot;</span><span class="p">,</span> <span class="s2">&quot;e&quot;</span><span class="p">],</span>
@@ -252,13 +253,13 @@ z  0.806219  0.734035  1.000000
 </span><span id="gcor-58"><a href="#gcor-58"><span class="linenos"> 58</span></a><span class="sd">    </span>
 </span><span id="gcor-59"><a href="#gcor-59"><span class="linenos"> 59</span></a><span class="sd">    Examples</span>
 </span><span id="gcor-60"><a href="#gcor-60"><span class="linenos"> 60</span></a><span class="sd">    --------</span>
-</span><span id="gcor-61"><a href="#gcor-61"><span class="linenos"> 61</span></a><span class="sd">    &gt;&gt;&gt; import pandas as pd</span>
-</span><span id="gcor-62"><a href="#gcor-62"><span class="linenos"> 62</span></a><span class="sd">    &gt;&gt;&gt; from gcor import gcor</span>
-</span><span id="gcor-63"><a href="#gcor-63"><span class="linenos"> 63</span></a><span class="sd">    &gt;&gt;&gt; x = pd.Series([0, 0, 0, 0, 0, 1, 1, 1, 1, 1])</span>
-</span><span id="gcor-64"><a href="#gcor-64"><span class="linenos"> 64</span></a><span class="sd">    &gt;&gt;&gt; y = pd.Series([1, 2, 3, 4, 5, 3, 4, 5, 6, 7])</span>
-</span><span id="gcor-65"><a href="#gcor-65"><span class="linenos"> 65</span></a><span class="sd">    &gt;&gt;&gt; gcor(x, y)</span>
-</span><span id="gcor-66"><a href="#gcor-66"><span class="linenos"> 66</span></a><span class="sd">    0.534522</span>
-</span><span id="gcor-67"><a href="#gcor-67"><span class="linenos"> 67</span></a>
+</span><span id="gcor-61"><a href="#gcor-61"><span class="linenos"> 61</span></a><span class="sd">    &gt;&gt;&gt; from gcor import gcor</span>
+</span><span id="gcor-62"><a href="#gcor-62"><span class="linenos"> 62</span></a><span class="sd">    &gt;&gt;&gt; x = [0, 0, 0, 0, 0, 1, 1, 1, 1, 1]</span>
+</span><span id="gcor-63"><a href="#gcor-63"><span class="linenos"> 63</span></a><span class="sd">    &gt;&gt;&gt; y = [1, 2, 3, 4, 5, 3, 4, 5, 6, 7]</span>
+</span><span id="gcor-64"><a href="#gcor-64"><span class="linenos"> 64</span></a><span class="sd">    &gt;&gt;&gt; gcor(x, y)</span>
+</span><span id="gcor-65"><a href="#gcor-65"><span class="linenos"> 65</span></a><span class="sd">    0.534522</span>
+</span><span id="gcor-66"><a href="#gcor-66"><span class="linenos"> 66</span></a>
+</span><span id="gcor-67"><a href="#gcor-67"><span class="linenos"> 67</span></a><span class="sd">    &gt;&gt;&gt; import pandas as pd</span>
 </span><span id="gcor-68"><a href="#gcor-68"><span class="linenos"> 68</span></a><span class="sd">    &gt;&gt;&gt; df = pd.DataFrame({</span>
 </span><span id="gcor-69"><a href="#gcor-69"><span class="linenos"> 69</span></a><span class="sd">    ...     &#39;x&#39;: x,</span>
 </span><span id="gcor-70"><a href="#gcor-70"><span class="linenos"> 70</span></a><span class="sd">    ...     &#39;y&#39;: y,</span>
@@ -420,17 +421,17 @@ The diagonal elements are always set to 1.0.</li>
 <h6 id="examples">Examples</h6>
 
 <div class="pdoc-code codehilite">
-<pre><span></span><code><span class="gp">&gt;&gt;&gt; </span><span class="kn">import</span><span class="w"> </span><span class="nn">pandas</span><span class="w"> </span><span class="k">as</span><span class="w"> </span><span class="nn">pd</span>
-<span class="gp">&gt;&gt;&gt; </span><span class="kn">from</span><span class="w"> </span><span class="nn">gcor</span><span class="w"> </span><span class="kn">import</span> <span class="n">gcor</span>
-<span class="gp">&gt;&gt;&gt; </span><span class="n">x</span> <span class="o">=</span> <span class="n">pd</span><span class="o">.</span><span class="n">Series</span><span class="p">([</span><span class="mi">0</span><span class="p">,</span> <span class="mi">0</span><span class="p">,</span> <span class="mi">0</span><span class="p">,</span> <span class="mi">0</span><span class="p">,</span> <span class="mi">0</span><span class="p">,</span> <span class="mi">1</span><span class="p">,</span> <span class="mi">1</span><span class="p">,</span> <span class="mi">1</span><span class="p">,</span> <span class="mi">1</span><span class="p">,</span> <span class="mi">1</span><span class="p">])</span>
-<span class="gp">&gt;&gt;&gt; </span><span class="n">y</span> <span class="o">=</span> <span class="n">pd</span><span class="o">.</span><span class="n">Series</span><span class="p">([</span><span class="mi">1</span><span class="p">,</span> <span class="mi">2</span><span class="p">,</span> <span class="mi">3</span><span class="p">,</span> <span class="mi">4</span><span class="p">,</span> <span class="mi">5</span><span class="p">,</span> <span class="mi">3</span><span class="p">,</span> <span class="mi">4</span><span class="p">,</span> <span class="mi">5</span><span class="p">,</span> <span class="mi">6</span><span class="p">,</span> <span class="mi">7</span><span class="p">])</span>
+<pre><span></span><code><span class="gp">&gt;&gt;&gt; </span><span class="kn">from</span><span class="w"> </span><span class="nn">gcor</span><span class="w"> </span><span class="kn">import</span> <span class="n">gcor</span>
+<span class="gp">&gt;&gt;&gt; </span><span class="n">x</span> <span class="o">=</span> <span class="p">[</span><span class="mi">0</span><span class="p">,</span> <span class="mi">0</span><span class="p">,</span> <span class="mi">0</span><span class="p">,</span> <span class="mi">0</span><span class="p">,</span> <span class="mi">0</span><span class="p">,</span> <span class="mi">1</span><span class="p">,</span> <span class="mi">1</span><span class="p">,</span> <span class="mi">1</span><span class="p">,</span> <span class="mi">1</span><span class="p">,</span> <span class="mi">1</span><span class="p">]</span>
+<span class="gp">&gt;&gt;&gt; </span><span class="n">y</span> <span class="o">=</span> <span class="p">[</span><span class="mi">1</span><span class="p">,</span> <span class="mi">2</span><span class="p">,</span> <span class="mi">3</span><span class="p">,</span> <span class="mi">4</span><span class="p">,</span> <span class="mi">5</span><span class="p">,</span> <span class="mi">3</span><span class="p">,</span> <span class="mi">4</span><span class="p">,</span> <span class="mi">5</span><span class="p">,</span> <span class="mi">6</span><span class="p">,</span> <span class="mi">7</span><span class="p">]</span>
 <span class="gp">&gt;&gt;&gt; </span><span class="n">gcor</span><span class="p">(</span><span class="n">x</span><span class="p">,</span> <span class="n">y</span><span class="p">)</span>
 <span class="go">0.534522</span>
 </code></pre>
 </div>
 
 <div class="pdoc-code codehilite">
-<pre><span></span><code><span class="gp">&gt;&gt;&gt; </span><span class="n">df</span> <span class="o">=</span> <span class="n">pd</span><span class="o">.</span><span class="n">DataFrame</span><span class="p">({</span>
+<pre><span></span><code><span class="gp">&gt;&gt;&gt; </span><span class="kn">import</span><span class="w"> </span><span class="nn">pandas</span><span class="w"> </span><span class="k">as</span><span class="w"> </span><span class="nn">pd</span>
+<span class="gp">&gt;&gt;&gt; </span><span class="n">df</span> <span class="o">=</span> <span class="n">pd</span><span class="o">.</span><span class="n">DataFrame</span><span class="p">({</span>
 <span class="gp">... </span>    <span class="s1">&#39;x&#39;</span><span class="p">:</span> <span class="n">x</span><span class="p">,</span>
 <span class="gp">... </span>    <span class="s1">&#39;y&#39;</span><span class="p">:</span> <span class="n">y</span><span class="p">,</span>
 <span class="gp">... </span>    <span class="s1">&#39;z&#39;</span><span class="p">:</span> <span class="p">[</span><span class="s1">&#39;a&#39;</span><span class="p">,</span> <span class="s1">&#39;a&#39;</span><span class="p">,</span> <span class="s1">&#39;b&#39;</span><span class="p">,</span> <span class="s1">&#39;b&#39;</span><span class="p">,</span> <span class="s1">&#39;c&#39;</span><span class="p">,</span> <span class="s1">&#39;c&#39;</span><span class="p">,</span> <span class="s1">&#39;d&#39;</span><span class="p">,</span> <span class="s1">&#39;d&#39;</span><span class="p">,</span> <span class="s1">&#39;e&#39;</span><span class="p">,</span> <span class="s1">&#39;e&#39;</span><span class="p">],</span>
