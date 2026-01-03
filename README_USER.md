@@ -16,7 +16,7 @@ pip install git+https://github.com/r-suzuki/gcor-py.git
 
 ## Examples
 
-**Generalized correlation measure** takes values in \[0, 1\] and can
+**Generalized correlation measure** takes values in $[0, 1]$ and can
 capture both linear and nonlinear associations. It naturally handles
 mixed data types, including numerical and categorical variables.
 
