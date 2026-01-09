@@ -27,4 +27,4 @@ make check    # full check before release
 ## References
 
 `gcor` package for R
-: <https://github.com/r-suzuki/gcor>
+: <https://github.com/r-suzuki/gcor-r>
