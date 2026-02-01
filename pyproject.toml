@@ -24,5 +24,6 @@ dev = [
   "jupyter",
   "ipykernel",
   "pyyaml",
-  "build>=1.0"
+  "build>=1.0",
+  "pdoc"
 ]
