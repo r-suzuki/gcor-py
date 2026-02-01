@@ -4,7 +4,11 @@ import pytest
 
 from gcor import gcor
 
-
+# df <- data.frame(
+#   x = c(0, 0, 0, 0, 0, 1, 1, 1, 1, 1),
+#   y = c(1, 2, 3, 4, 5, 3, 4, 5, 6, 7),
+#   z = c('a', 'a', 'b', 'b', 'c', 'c', 'd', 'd', 'e', 'e')
+# )
 def _example_data():
     x = [0, 0, 0, 0, 0, 1, 1, 1, 1, 1]
     y = [1, 2, 3, 4, 5, 3, 4, 5, 6, 7]
@@ -41,9 +45,9 @@ def test_gcor_example_matrix_regression():
     assert list(got.index) == ['x', 'y', 'z']
 
     expected = np.array([
-        [1.0,      0.534522, 0.806219],
-        [0.534522, 1.0,      0.734035],
-        [0.806219, 0.734035, 1.0],
+        [1.0,      0.534522, 0.838289],
+        [0.534522, 1.0,      0.763233],
+        [0.838289, 0.763233, 1.0],
     ], dtype=float)
 
     # Match the Examples section (printed to 6 decimals).

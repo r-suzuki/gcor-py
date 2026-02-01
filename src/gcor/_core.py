@@ -72,14 +72,13 @@ def gcor_cat(
         # )
         phi = 1.0
 
-    # If kk == 1, both x and y is constant.
-    # In this case gcor(x,y) = 1 and gdis(x,y) = 0.
+    # If both x and y are constant,
+    # gcor(x,y) = 1 and gdis(x,y) = 0.
     if kx == ky == 1:
         cor = 1.0
     else:
-        kk = sqrt(kx) * sqrt(ky)
         r2 = 1 - 1/phi
-        cor = sqrt(r2 / (1 - 1/kk))
+        cor = sqrt(r2 / sqrt(1 - 1/kx) / sqrt(1 - 1/ky))
     
     return cor
 
