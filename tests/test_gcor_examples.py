@@ -62,3 +62,23 @@ def test_gcor_example_scalar_matches_matrix_entry():
 
     # Consistency check: scalar result matches the corresponding matrix entry.
     assert scalar == pytest.approx(float(mat.loc['x', 'y']), rel=0.0, abs=1e-12)
+
+
+def test_gcor_const():
+    df = pd.DataFrame({
+        'x': [0, 0, 0, 0, 0, 0, 0, 0, 0, 0],
+        'y': [1, 1, 1, 1, 1, 1, 1, 1, 1, 1],
+        'z': ['a', 'a', 'b', 'b', 'c', 'c', 'd', 'd', 'e', 'e'],
+    })
+
+    got = gcor(df)
+    # print(got)
+
+    expected = np.array([
+        [1.0, 1.0, 0.0],
+        [1.0, 1.0, 0.0],
+        [0.0, 0.0, 1.0],
+    ], dtype=float)
+
+    np.testing.assert_allclose(got.to_numpy(), expected, rtol=0.0, atol=5e-5)
+    
