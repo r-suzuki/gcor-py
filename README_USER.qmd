@@ -52,3 +52,9 @@ df = pd.DataFrame({
 gmat = gcor(df)
 print(gmat)
 ```
+
+## Documentation
+
+### Method Overview
+- [English](https://r-suzuki.github.io/gcor/method.html)
+- [Japanese](https://r-suzuki.github.io/gcor/method_ja.html)

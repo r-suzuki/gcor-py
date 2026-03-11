@@ -53,3 +53,10 @@ print(gmat)
     x  1.000000  0.534522  0.838289
     y  0.534522  1.000000  0.763233
     z  0.838289  0.763233  1.000000
+
+## Documentation
+
+### Method Overview
+
+- [English](https://r-suzuki.github.io/gcor/method.html)
+- [Japanese](https://r-suzuki.github.io/gcor/method_ja.html)
