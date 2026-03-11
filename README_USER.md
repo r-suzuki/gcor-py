@@ -10,6 +10,14 @@ may occur frequently.**
 
 ## Installation
 
+### PyPI
+
+``` bash
+pip install gcor
+```
+
+### GitHub (development version)
+
 ``` bash
 pip install git+https://github.com/r-suzuki/gcor-py.git
 ```
