@@ -18,7 +18,6 @@ build:
 	uv run python -m build
 
 # Build HTML docs with pdoc
-# - Adjust "gcor" to your top-level package/module name.
 # - "docs" is a convenient output dir for GitHub Pages.
 docs:
 	uv run quarto render README_USER.qmd
