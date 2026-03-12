@@ -6,7 +6,7 @@ build-backend = "hatchling.build"
 name = "gcor"
 version = "0.1.1.dev0"
 description = "Generalized correlation measures"
-readme = "README.md"
+readme = "README_USER.md"
 requires-python = ">=3.9"
 
 authors = [
