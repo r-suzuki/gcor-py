@@ -12,11 +12,6 @@ test:
 testv:
 	uv run pytest -s
 
-# Build source distribution and wheel (equivalent to R CMD build)
-build:
-	rm -rf dist/
-	uv run python -m build
-
 # Build HTML docs with pdoc
 # - "docs" is a convenient output dir for GitHub Pages.
 docs:
@@ -25,8 +20,13 @@ docs:
 	rm -rf docs; \
 	uv run pdoc --docformat numpy --math --footer-text "gcor v$${VERSION}" -o docs gcor
 
+# Build source distribution and wheel (equivalent to R CMD build)
+build: docs
+	rm -rf dist/
+	uv run python -m build
+
 # Full check before release (rough equivalent of R CMD CHECK)
-check: sync test build docs
+check: sync test build
 	@echo "✔ All checks completed successfully."
 
 # Remove build artifacts and temporary environments
