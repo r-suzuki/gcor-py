@@ -14,6 +14,7 @@ testv:
 
 # Build source distribution and wheel (equivalent to R CMD build)
 build:
+	rm -rf dist/
 	uv run python -m build
 
 # Build HTML docs with pdoc
