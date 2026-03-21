@@ -5,9 +5,6 @@ A Python implementation of generalized correlation measure. For
 development status and source code, see
 <https://github.com/r-suzuki/gcor-py>.
 
-**Note that this project is in an early stage of development, so changes
-may occur frequently.**
-
 ## Installation
 
 ### PyPI
@@ -21,6 +18,13 @@ pip install gcor
 ``` bash
 pip install git+https://github.com/r-suzuki/gcor-py.git
 ```
+
+## Documentation
+
+### Method Overview
+
+- [English](https://r-suzuki.github.io/gcor/method.html)
+- [Japanese](https://r-suzuki.github.io/gcor/method_ja.html)
 
 ## Examples
 
@@ -61,10 +65,3 @@ print(gmat)
     x  1.000000  0.534522  0.838289
     y  0.534522  1.000000  0.763233
     z  0.838289  0.763233  1.000000
-
-## Documentation
-
-### Method Overview
-
-- [English](https://r-suzuki.github.io/gcor/method.html)
-- [Japanese](https://r-suzuki.github.io/gcor/method_ja.html)
