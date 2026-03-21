@@ -1,9 +1,6 @@
 # `gcor` library for Python
 A Python implementation of generalized correlation measure.
 
-**Note that this project is in an early stage of development, so changes
-may occur frequently.**
-
 ## Documentation
 
 Documentation site (user guide and API reference)
